@@ -20,7 +20,7 @@ html {
 }
 
 .home {
-  @apply w-fit xl:h-full flex xl:justify-between justify-start items-start flex-col xl:py-8 xl:px-36 sm:p-8 p-6 max-xl:gap-7 absolute z-10;
+  @apply w-fit xl:h-full flex xl:justify-between justify-start items-start flex-col xl:py-8 xl:px-36 sm:p-8 p-6 max-xl:gap-7 absolute z-20;
 }
 
 .home-content {
@@ -41,6 +41,10 @@ html {
 
 .filtertabs-container {
   @apply absolute z-10 bottom-5 right-0 left-0 w-full flex justify-center items-center flex-wrap gap-4;
+}
+
+.item-tabs-container {
+  @apply absolute z-10 bottom-20 right-0 left-0 w-full flex justify-center items-center flex-wrap gap-4;
 }
 
 .aipicker-container {

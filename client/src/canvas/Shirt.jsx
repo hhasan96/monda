@@ -8,17 +8,16 @@ import state from '../store';
 
 const Shirt = () => {
   const snap = useSnapshot(state);
+  const shirtState = snap.items.shirt;
   const { nodes, materials } = useGLTF('/shirt_baked.glb');
 
-  const logoTexture = useTexture(snap.logoDecal);
-  const fullTexture = useTexture(snap.fullDecal);
+  const logoTexture = useTexture(shirtState.logoDecal);
+  const fullTexture = useTexture(shirtState.fullDecal);
 
-  useFrame((state, delta) => easing.dampC(materials.lambert1.color, snap.color, 0.25, delta));
-
-  const stateString = JSON.stringify(snap);
+  useFrame((state, delta) => easing.dampC(materials.lambert1.color, snap.items.shirt.color, 0.25, delta));
 
   return (
-    <group key={stateString}>
+    <group>
       <mesh
         castShadow
         geometry={nodes.T_Shirt_male.geometry}
@@ -26,7 +25,7 @@ const Shirt = () => {
         material-roughness={1}
         dispose={null}
       >
-        {snap.isFullTexture && (
+        {shirtState.isFullTexture && (
           <Decal 
             position={[0, 0, 0]}
             rotation={[0, 0, 0]}
@@ -35,7 +34,7 @@ const Shirt = () => {
           />
         )}
 
-        {snap.isLogoTexture && (
+        {shirtState.isLogoTexture && (
           <Decal 
             position={[0, 0.04, 0.15]}
             rotation={[0, 0, 0]}
