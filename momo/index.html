@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monda's | Bar & Vinothek - Köstliche Getränke und Atmosphäre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        /* Shooting stars background from Aceternity */
+        .shooting-star {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
+                        0 0 0 8px rgba(255, 255, 255, 0.1),
+                        0 0 20px rgba(255, 255, 255, 1);
+            animation: animate 3s linear infinite;
+        }
+        
+        .shooting-star::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 1), transparent);
+        }
+        
+        @keyframes animate {
+            0% {
+                transform: rotate(315deg) translateX(0);
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: rotate(315deg) translateX(-1000px);
+                opacity: 0;
+            }
+        }
+        
+        .shooting-star:nth-child(1) {
+            top: 0;
+            right: 0;
+            left: initial;
+            animation-delay: 0;
+            animation-duration: 1s;
+        }
+        
+        .shooting-star:nth-child(2) {
+            top: 0;
+            right: 80px;
+            left: initial;
+            animation-delay: 0.2s;
+            animation-duration: 3s;
+        }
+        
+        .shooting-star:nth-child(3) {
+            top: 80px;
+            right: 0px;
+            left: initial;
+            animation-delay: 0.4s;
+            animation-duration: 2s;
+        }
+        
+        .shooting-star:nth-child(4) {
+            top: 0;
+            right: 180px;
+            left: initial;
+            animation-delay: 0.6s;
+            animation-duration: 1.5s;
+        }
+        
+        .shooting-star:nth-child(5) {
+            top: 0;
+            right: 400px;
+            left: initial;
+            animation-delay: 0.8s;
+            animation-duration: 2.5s;
+        }
+        
+        .shooting-star:nth-child(6) {
+            top: 0;
+            right: 600px;
+            left: initial;
+            animation-delay: 1s;
+            animation-duration: 3s;
+        }
+        
+        .shooting-star:nth-child(7) {
+            top: 300px;
+            right: 0px;
+            left: initial;
+            animation-delay: 1.2s;
+            animation-duration: 1.75s;
+        }
+        
+        .shooting-star:nth-child(8) {
+            top: 0px;
+            right: 700px;
+            left: initial;
+            animation-delay: 1.4s;
+            animation-duration: 1.25s;
+        }
+        
+        .shooting-star:nth-child(9) {
+            top: 0px;
+            right: 1000px;
+            left: initial;
+            animation-delay: 0.75s;
+            animation-duration: 2.25s;
+        }
+        
+        .shooting-star:nth-child(10) {
+            top: 0px;
+            right: 450px;
+            left: initial;
+            animation-delay: 2.75s;
+            animation-duration: 2.25s;
+        }
+        
+        /* Stars background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+        
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        /* Menu item hover effect */
+        .menu-item {
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Navbar glass effect */
+        .glass-nav {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="text-white font-sans overflow-x-hidden">
+    <!-- Stars background -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- Shooting stars -->
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    
+    <!-- Navigation -->
+    <nav class="glass-nav fixed w-full z-50 py-4 px-6 md:px-12 flex justify-between items-center">
+        <div class="flex items-center">
+            <div class="text-3xl font-medium tracking-wider" style="font-family: 'Parisienne', cursive;">
+                Monda's
+            </div>
+        </div>
+        <div class="hidden md:flex space-x-8">
+            <a href="#" class="hover:text-amber-400 transition duration-300">Startseite</a>
+            <a href="#menu" class="hover:text-amber-400 transition duration-300">Speisekarte</a>
+            <a href="#about" class="hover:text-amber-400 transition duration-300">Über Uns</a>
+            <a href="#events" class="hover:text-amber-400 transition duration-300">Veranstaltungen</a>
+            <a href="#contact" class="hover:text-amber-400 transition duration-300">Kontakt</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="#contact" class="bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded-full font-medium transition duration-300">
+                Reservations
+            </a>
+            <button id="mobile-menu-button" class="md:hidden text-2xl">
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex flex-col items-center justify-center space-y-8">
+        <button id="close-menu" class="absolute top-6 right-6 text-3xl">
+            <ion-icon name="close"></ion-icon>
+        </button>
+        <a href="#" class="text-3xl hover:text-amber-400 transition duration-300">Startseite</a>
+        <a href="#menu" class="text-3xl hover:text-amber-400 transition duration-300">Speisekarte</a>
+        <a href="#about" class="text-3xl hover:text-amber-400 transition duration-300">Über Uns</a>
+        <a href="#events" class="text-3xl hover:text-amber-400 transition duration-300">Events</a>
+        <a href="#contact" class="text-3xl hover:text-amber-400 transition duration-300">Kontakt</a>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <div class="absolute inset-0 opacity-70">
+            <img src="https://sdmntpritalynorth.oaiusercontent.com/files/00000000-906c-6246-8006-ed55971ec06a/raw?se=2025-07-15T15%3A00%3A36Z&sp=r&sv=2024-08-04&sr=b&scid=a1ff43b6-bc8a-5b80-98bd-3931adb1a9eb&skoid=82a3371f-2f6c-4f81-8a78-2701b362559b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-15T07%3A48%3A21Z&ske=2025-07-16T07%3A48%3A21Z&sks=b&skv=2024-08-04&sig=KNzVS5n543bUW0udWi6BxilWMrgwPEFymQ9YK6yAXX0%3D" 
+                 alt="Fleisch und Fisch Hintergrund" 
+                 class="w-full h-full object-cover brightness-75">
+        </div>
+        <div class="container mx-auto px-6 md:px-12 text-center animate-fade-in relative z-10">
+            <h1 class="text-5xl md:text-7xl mb-6" style="font-family: 'Brush Script MT', cursive;">
+                Restaurant <span class="text-amber-400">★</span> Bar <span class="text-amber-400">★</span> Vinothek
+            </h1>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button class="bg-amber-600 hover:bg-amber-700 px-8 py-4 rounded-full font-medium text-lg transition duration-300 transform hover:scale-105">
+                    Speisekarte
+                </button>
+                <a href="#contact" class="border border-amber-400 hover:bg-amber-400 hover:bg-opacity-20 px-8 py-4 rounded-full font-medium text-lg transition duration-300 transform hover:scale-105">
+                    Tisch reservieren
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-0 right-0 flex justify-center animate-bounce">
+            <a href="#menu" class="text-amber-400 text-4xl">
+                <ion-icon name="chevron-down"></ion-icon>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 px-6 md:px-12 bg-black bg-opacity-70 backdrop-blur-sm">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="text-amber-400">UNSERE</span> SPEZIALGETRÄNKE
+                </h2>
+                <p class="text-xl max-w-2xl mx-auto opacity-90">
+                    Handgemachte Cocktails mit Premium-Zutaten und künstlerischem Flair.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Menu Item 1 -->
+                <div class="menu-item bg-gray-900 bg-opacity-70 rounded-xl p-6 hover:bg-opacity-90 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-2xl font-bold">Midnight Elixir</h3>
+                        <span class="text-amber-400 text-xl font-bold">$14</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Dark rum, blackberry liqueur, lime juice, and a hint of mint. Served with dry ice for a smoky effect.
+                    </p>
+                    <div class="flex items-center text-amber-400">
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star-half" class="mr-1"></ion-icon>
+                        <span class="text-white ml-2">4.7</span>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 2 -->
+                <div class="menu-item bg-gray-900 bg-opacity-70 rounded-xl p-6 hover:bg-opacity-90 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-2xl font-bold">Golden Sunset</h3>
+                        <span class="text-amber-400 text-xl font-bold">$16</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Tequila reposado, Aperol, grapefruit juice, and honey syrup. Garnished with a dehydrated citrus wheel.
+                    </p>
+                    <div class="flex items-center text-amber-400">
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <span class="text-white ml-2">5.0</span>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 3 -->
+                <div class="menu-item bg-gray-900 bg-opacity-70 rounded-xl p-6 hover:bg-opacity-90 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-2xl font-bold">Smoky Negroni</h3>
+                        <span class="text-amber-400 text-xl font-bold">$15</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Gin, Campari, sweet vermouth with a smoked rosemary sprig. A modern twist on the classic.
+                    </p>
+                    <div class="flex items-center text-amber-400">
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <span class="text-white ml-2">4.9</span>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 4 -->
+                <div class="menu-item bg-gray-900 bg-opacity-70 rounded-xl p-6 hover:bg-opacity-90 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-2xl font-bold">Lavender Mule</h3>
+                        <span class="text-amber-400 text-xl font-bold">$13</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Vodka, lavender syrup, lime juice, and ginger beer. Served in a copper mug with fresh lavender.
+                    </p>
+                    <div class="flex items-center text-amber-400">
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star-outline" class="mr-1"></ion-icon>
+                        <span class="text-white ml-2">4.5</span>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 5 -->
+                <div class="menu-item bg-gray-900 bg-opacity-70 rounded-xl p-6 hover:bg-opacity-90 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-2xl font-bold">Espresso Martini</h3>
+                        <span class="text-amber-400 text-xl font-bold">$14</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Vodka, coffee liqueur, fresh espresso, and vanilla syrup. Topped with three coffee beans.
+                    </p>
+                    <div class="flex items-center text-amber-400">
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star-half" class="mr-1"></ion-icon>
+                        <span class="text-white ml-2">4.7</span>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 6 -->
+                <div class="menu-item bg-gray-900 bg-opacity-70 rounded-xl p-6 hover:bg-opacity-90 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-2xl font-bold">Passionfruit Mojito</h3>
+                        <span class="text-amber-400 text-xl font-bold">$12</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        White rum, fresh passionfruit, mint, lime juice, and soda water. A tropical refreshment.
+                    </p>
+                    <div class="flex items-center text-amber-400">
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star" class="mr-1"></ion-icon>
+                        <ion-icon name="star-outline" class="mr-1"></ion-icon>
+                        <span class="text-white ml-2">4.3</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <button class="border border-amber-400 hover:bg-amber-400 hover:bg-opacity-20 px-8 py-4 rounded-full font-medium text-lg transition duration-300">
+                    Vollständige Karte
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 md:px-12 bg-black bg-opacity-70 backdrop-blur-sm">
+        <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div class="relative rounded-xl overflow-hidden h-96 w-full">
+                        <div class="absolute inset-0 bg-gradient-to-r from-amber-500 to-amber-700 opacity-30"></div>
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             alt="Bar interior" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                        <span class="text-amber-400">UNSERE</span> GESCHICHTE
+                    </h2>
+                    <p class="text-lg mb-6 opacity-90">
+                        Gegründet 2015 aus Leidenschaft für handgemachte Cocktails und dem Wunsch, einen anspruchsvollen aber einladenden Raum für Genießer zu schaffen.
+                    </p>
+                    <p class="text-lg mb-8 opacity-90">
+                        Unser preisgekröntes Team vereint traditionelle Techniken mit innovativen Ansätzen für unvergessliche Trinkerlebnisse. Wir verwenden nur die feinsten Spirituosen und frischesten Zutaten.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center">
+                            <ion-icon name="checkmark-circle" class="text-amber-400 text-2xl mr-2"></ion-icon>
+                            <span>Premium Ingredients</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="checkmark-circle" class="text-amber-400 text-2xl mr-2"></ion-icon>
+                            <span>Expert Mixologists</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="checkmark-circle" class="text-amber-400 text-2xl mr-2"></ion-icon>
+                            <span>Seasonal Menu</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="checkmark-circle" class="text-amber-400 text-2xl mr-2"></ion-icon>
+                            <span>Live Music</span>
+                        </div>
+                    </div>
+                    <button class="bg-amber-600 hover:bg-amber-700 px-8 py-4 rounded-full font-medium text-lg transition duration-300">
+                        Unser Team
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Events Section -->
+    <section id="events" class="py-20 px-6 md:px-12 bg-black bg-opacity-70 backdrop-blur-sm">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="text-amber-400">KOMMENDE</span> VERANSTALTUNGEN
+                </h2>
+                <p class="text-xl max-w-2xl mx-auto opacity-90">
+                    Besondere Abende mit Musik, Cocktails und Feierlichkeiten.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Event 1 -->
+                <div class="bg-gray-900 bg-opacity-70 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-amber-400/20">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             alt="DJ Night" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-sm">
+                            June 15
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Neon Nights DJ Set</h3>
+                        <p class="text-gray-300 mb-4">
+                            Join us for an electrifying night with resident DJ spinning house and techno beats.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-amber-400 font-medium">9PM - 2AM</span>
+                            <button class="text-amber-400 hover:text-amber-300 transition duration-300">
+                                Mehr Info
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 2 -->
+                <div class="bg-gray-900 bg-opacity-70 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-amber-400/20">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             alt="Jazz Night" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-sm">
+                            June 22
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Smooth Jazz Evening</h3>
+                        <p class="text-gray-300 mb-4">
+                            Relax to the sounds of our jazz quartet featuring special guest vocalist Sarah Miles.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-amber-400 font-medium">7PM - 11PM</span>
+                            <button class="text-amber-400 hover:text-amber-300 transition duration-300">
+                                More Info
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 3 -->
+                <div class="bg-gray-900 bg-opacity-70 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-amber-400/20">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             alt="Mixology Class" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-sm">
+                            June 29
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Mixology Masterclass</h3>
+                        <p class="text-gray-300 mb-4">
+                            Learn to craft three signature cocktails from our head mixologist. Limited seats available.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-amber-400 font-medium">5PM - 7PM</span>
+                            <button class="text-amber-400 hover:text-amber-300 transition duration-300">
+                                More Info
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <button class="border border-amber-400 hover:bg-amber-400 hover:bg-opacity-20 px-8 py-4 rounded-full font-medium text-lg transition duration-300">
+                    Alle Events
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-20 px-6 md:px-12 bg-black bg-opacity-70 backdrop-blur-sm">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="text-amber-400">WAS</span> GÄSTE SAGEN
+                </h2>
+                <p class="text-xl max-w-2xl mx-auto opacity-90">
+                    Überzeugen Sie sich selbst. Das sagen unsere Gäste über uns.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-900 bg-opacity-70 rounded-xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                    </div>
+                    <p class="text-lg mb-6 italic">
+                        "The cocktails here are works of art. The Midnight Elixir was unlike anything I've ever tasted - complex, balanced, and visually stunning."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/43.jpg" 
+                             alt="Sarah J." 
+                             class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <h4 class="font-bold">Sarah J.</h4>
+                            <p class="text-sm text-gray-400">Google Review</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-900 bg-opacity-70 rounded-xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                    </div>
+                    <p class="text-lg mb-6 italic">
+                        "Perfect ambiance for a date night. The jazz evening was magical, and the bartenders really know their craft. Will definitely be back!"
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" 
+                             alt="Michael T." 
+                             class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <h4 class="font-bold">Michael T.</h4>
+                            <p class="text-sm text-gray-400">Yelp Review</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-900 bg-opacity-70 rounded-xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                        <div class="text-amber-400 text-2xl mr-2">★</div>
+                    </div>
+                    <p class="text-lg mb-6 italic">
+                        "Attended the mixology class and learned so much! The team is knowledgeable and passionate. Now I can impress my friends with proper cocktails."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" 
+                             alt="Emma L." 
+                             class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <h4 class="font-bold">Emma L.</h4>
+                            <p class="text-sm text-gray-400">Facebook Review</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 md:px-12 bg-black bg-opacity-70 backdrop-blur-sm">
+        <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                        RESERVIERE EIN TISCH ODER FÜR EIN EVENT
+                    </h2>
+                    <p class="text-xl max-w-2xl mx-auto opacity-90 mb-12">
+                        Lorem ipsum dolor sit amet, consectet adipiscing elit,sed do eiusm por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea sint occaecat non proident, sunt in culpa qui officia mollit natoque. Lorem ipsum dolor sit amet, consectet adipiscing elit,sed do eiusm por incididunt ut labore et.
+                    </p>
+                    <form id="reservation-form" action="https://formspree.io/f/wwhhhq@gmail.com" method="POST" class="bg-gray-900 bg-opacity-70 rounded-xl p-8">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                            <div>
+                                <label for="booking-type" class="block mb-2">Booking Type</label>
+                                <select id="booking-type" name="booking-type" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                    <option>Tisch reservieren</option>
+                                    <option>Event anfragen</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="date" class="block mb-2">Datum</label>
+                                <input type="date" id="date" name="date" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div>
+                                <label for="name" class="block mb-2">Ihr Name</label>
+                                <input type="text" id="name" name="name" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div>
+                                <label for="guests" class="block mb-2">Anzahl Gäste</label>
+                                <input type="number" id="guests" name="guests" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500" min="1">
+                            </div>
+                            <div>
+                                <label for="time" class="block mb-2">Uhrzeit</label>
+                                <input type="time" id="time" name="time" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div>
+                                <label for="phone" class="block mb-2">Ihre Telefonnummer</label>
+                                <input type="tel" id="phone" name="phone" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                        </div>
+                         <div class="mb-6">
+                            <label for="email" class="block mb-2">E-Mail Adresse</label>
+                            <input type="email" id="email" name="email" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        </div>
+                        <button type="submit" class="bg-amber-600 hover:bg-amber-700 w-full py-4 rounded-lg font-medium transition duration-300">
+                            Request Booking
+                        </button>
+                    </form>
+                    <p id="form-status" class="mt-4 text-center"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Map Section -->
+    <div class="h-96 w-full">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215256018607!2d-73.9878449242397!3d40.7484409713896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1623251234567!5m2!1sen!2sus" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy"
+                class="filter grayscale-50 contrast-125"></iframe>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-90 py-12 px-6 md:px-12">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-2xl font-bold tracking-wider mb-6 md:mb-0">
+                    <span class="text-amber-400">MONDA'S</span> BAR & VINOTHEK
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
+                    <a href="#" class="hover:text-amber-400 transition duration-300">Startseite</a>
+                    <a href="#menu" class="hover:text-amber-400 transition duration-300">Speisekarte</a>
+                    <a href="#about" class="hover:text-amber-400 transition duration-300">Über Uns</a>
+                    <a href="#events" class="hover:text-amber-400 transition duration-300">Events</a>
+                    <a href="#contact" class="hover:text-amber-400 transition duration-300">Kontakt</a>
+                    <a href="#" class="hover:text-amber-400 transition duration-300">Datenschutz</a>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                        <ion-icon name="logo-facebook"></ion-icon>
+                    </a>
+                    <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+                    <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition duration-300">
+                        <ion-icon name="logo-twitter"></ion-icon>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 Bar & Vinothek. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuButton = document.getElementById('close-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+        
+        // Create stars for background
+        document.addEventListener('DOMContentLoaded', () => {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 200;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random size between 1 and 3 pixels
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random position
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration between 1 and 5 seconds
+                star.style.setProperty('--duration', `${Math.random() * 4 + 1}s`);
+                
+                // Random delay
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                
+                starsContainer.appendChild(star);
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            document.body.style.overflow = '';
+                        }
+                    }
+                });
+            });
+            
+            // Add scroll animation
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.animate-fade-in');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Initial check
+            animateOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+    <script>
+      var form = document.getElementById("reservation-form");
+      
+      async function handleSubmit(event) {
+        event.preventDefault();
+        var status = document.getElementById("form-status");
+        var data = new FormData(event.target);
+        fetch(event.target.action, {
+          method: form.method,
+          body: data,
+          headers: {
+              'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            status.innerHTML = "Danke für Ihre Reservierung! Wir werden Sie in Kürze kontaktieren, um zu bestätigen.";
+            form.reset()
+          } else {
+            response.json().then(data => {
+              if (Object.hasOwn(data, 'errors')) {
+                status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+              } else {
+                status.innerHTML = "Oops! There was a problem submitting your form"
+              }
+            })
+          }
+        }).catch(error => {
+          status.innerHTML = "Oops! There was a problem submitting your form"
+        });
+      }
+      form.addEventListener("submit", handleSubmit)
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=HHasan96/momo" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>
